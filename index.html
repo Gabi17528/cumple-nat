@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f1ff">
+  <title>Feliz Cumple mi niña</title>
+  <style>
+    :root {
+      --lila: #9b83d5;
+      --lila-oscuro: #6f58a8;
+      --rosa: #f4c8dc;
+      --crema: #fffaf5;
+      --tinta: #403650;
+      --blanco: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--tinta);
+      background:
+        radial-gradient(circle at 10% 8%, rgba(244, 200, 220, .45), transparent 27rem),
+        radial-gradient(circle at 90% 30%, rgba(199, 183, 244, .38), transparent 30rem),
+        var(--crema);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.65;
+    }
+    button { font: inherit; cursor: pointer; }
+    .hero {
+      min-height: 100svh;
+      padding: 28px 20px 56px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .sparkle {
+      position: absolute;
+      color: #a38ad8;
+      opacity: .65;
+      font-size: clamp(18px, 3vw, 30px);
+      animation: float 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .s1 { top: 15%; left: 12%; }
+    .s2 { top: 24%; right: 13%; animation-delay: -1s; }
+    .s3 { bottom: 18%; left: 18%; animation-delay: -2s; }
+    .s4 { bottom: 22%; right: 17%; animation-delay: -.5s; }
+    @keyframes float {
+      0%,100% { transform: translateY(0) rotate(0); }
+      50% { transform: translateY(-12px) rotate(10deg); }
+    }
+    .hero-inner { width: min(760px, 100%); position: relative; z-index: 1; }
+    .eyebrow {
+      display: inline-block;
+      padding: 7px 15px;
+      border: 1px solid rgba(155, 131, 213, .28);
+      background: rgba(255,255,255,.7);
+      border-radius: 999px;
+      color: var(--lila-oscuro);
+      font-size: .82rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(3rem, 9vw, 6.2rem);
+      font-weight: 500;
+      letter-spacing: -.055em;
+      line-height: 1.04;
+      margin: 25px 0 18px;
+    }
+    h1 span { color: var(--lila-oscuro); font-style: italic; }
+    .intro { max-width: 530px; margin: 0 auto 28px; color: #6b6077; font-size: clamp(1rem, 2.5vw, 1.15rem); }
+    .button {
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 23px;
+      background: var(--lila-oscuro);
+      color: white;
+      box-shadow: 0 10px 24px rgba(111, 88, 168, .22);
+      transition: transform .2s, box-shadow .2s, background .2s;
+    }
+    .button:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(111,88,168,.28); }
+    .button.secondary {
+      color: var(--lila-oscuro);
+      background: white;
+      border: 1px solid #e6dff4;
+      box-shadow: none;
+    }
+    .tiny-note { margin-top: 15px; color: #8b8197; font-size: .85rem; }
+    main { display: none; padding: 0 18px 70px; }
+    main.visible { display: block; animation: appear .8s ease both; }
+    @keyframes appear { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .section { width: min(980px, 100%); margin: 0 auto; padding: 54px 0; }
+    .section-heading { text-align: center; margin-bottom: 26px; }
+    .section-heading .mini { color: var(--lila-oscuro); letter-spacing: .16em; font-size: .75rem; text-transform: uppercase; font-weight: 700; }
+    h2 { font: 500 clamp(2rem, 5vw, 3.3rem)/1.15 Georgia, "Times New Roman", serif; margin: 8px 0 12px; letter-spacing: -.035em; }
+    .section-heading p { color: #766b81; margin: 0 auto; max-width: 560px; }
+    .gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  align-items: start;
+  max-width: 760px;
+  margin: 0 auto;
+}
+    .polaroid {
+      background: white;
+      padding: 10px 10px 17px;
+      border-radius: 4px;
+      box-shadow: 0 12px 30px rgba(70, 50, 95, .12);
+      transform: rotate(-2deg);
+      transition: transform .25s;
+    }
+    .polaroid:nth-child(2) { transform: rotate(2deg); margin-top: 20px; }
+    .polaroid:nth-child(3) { transform: rotate(-1deg); }
+    .polaroid:hover { transform: translateY(-5px) rotate(0); }
+    .photo-frame {
+      aspect-ratio: 4 / 5;
+      background: linear-gradient(145deg, #f6e7f2, #e9e1fb);
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      color: #8d7aa8;
+      text-align: center;
+      padding: 12px;
+    }
+    .photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    /* Foto 1: encuadrar para que salgáis los dos */
+.polaroid:nth-child(1) .photo-frame img {
+  object-fit: contain;
+  background: #f6e7f2;
+}
+
+/* Foto 2: Natalia como protagonista */
+.polaroid:nth-child(2) .photo-frame img {
+  object-fit: cover;
+  object-position: 25% center;
+}
+    .photo-frame .placeholder-icon { font-size: 2rem; display: block; margin-bottom: 8px; }
+    .photo-frame small { display: block; font-size: .78rem; }
+    .caption { text-align: center; font-family: Georgia, serif; margin-top: 12px; font-size: 1.05rem; }
+    .letter-wrap { background: rgba(255,255,255,.76); border: 1px solid rgba(155,131,213,.2); border-radius: 24px; padding: clamp(22px, 5vw, 48px); box-shadow: 0 18px 50px rgba(87,64,119,.07); }
+    .letter-top { color: var(--lila-oscuro); text-align: center; font-size: 1.4rem; margin-bottom: 12px; }
+    .letter { max-width: 650px; margin: auto; font-family: Georgia, "Times New Roman", serif; font-size: 1.08rem; white-space: pre-line; }
+    .signature { margin-top: 24px; text-align: right; font-family: Georgia, serif; font-style: italic; font-size: 1.25rem; color: var(--lila-oscuro); }
+    .surprise-card { text-align: center; padding: clamp(25px, 5vw, 48px); border-radius: 26px; background: linear-gradient(135deg, #eee7ff, #fff0f6); border: 1px solid rgba(155,131,213,.18); }
+    .surprise-card p { max-width: 560px; margin: 0 auto 22px; color: #665a78; }
+    #finalMessage { display: none; max-width: 620px; margin: 24px auto 0; padding: 22px; border-radius: 18px; background: rgba(255,255,255,.8); animation: appear .6s ease both; }
+    #finalMessage.visible { display: block; }
+    .heart { color: #cf78a5; font-size: 2rem; }
+    footer { text-align: center; padding: 25px 18px 35px; color: #92879e; font-size: .86rem; }
+    .confetti-piece { position: fixed; top: -20px; z-index: 20; width: 9px; height: 14px; pointer-events: none; animation: fall linear forwards; }
+    @keyframes fall { to { transform: translateY(110vh) rotate(760deg); opacity: .85; } }
+    @media (max-width: 650px) {
+      .gallery { grid-template-columns: 1fr; gap: 18px; width: min(340px, 100%); margin: auto; }
+      .polaroid, .polaroid:nth-child(2), .polaroid:nth-child(3) { transform: rotate(0); margin-top: 0; }
+      .photo-frame { aspect-ratio: 5 / 4; }
+      .section { padding: 38px 0; }
+      .s1 { left: 5%; } .s2 { right: 5%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero" id="portada">
+    <span class="sparkle s1">✦</span>
+    <span class="sparkle s2">✧</span>
+    <span class="sparkle s3">♡</span>
+    <span class="sparkle s4">✦</span>
+    <div class="hero-inner">
+      <span class="eyebrow">Un pequeño regalo para ti</span>
+      <h1>Feliz cumpleaños,<br><span id="nombrePortada">NOMBRE</span></h1>
+      <p class="intro">Hoy toca celebrar a una persona que hace más bonitos los días de quienes tienen la suerte de conocerla.</p>
+      <button class="button" id="abrirBtn" type="button">Descubrir tu sorpresa <span aria-hidden="true">♡</span></button>
+      <p class="tiny-note">He preparado esto especialmente para ti</p>
+    </div>
+  </section>
+
+  <main id="contenido">
+    <section class="section">
+      <div class="section-heading">
+        <span class="mini">Pequeños recuerdos</span>
+        <h2>Momentos nuestros</h2>
+        <p>Tres fotos, un montón de recuerdos y muchos momentos que todavía nos quedan por vivir.</p>
+      </div>
+      <div class="gallery">
+        <article class="polaroid">
+          <div class="photo-frame">
+            <div class="placeholder"><span class="placeholder-icon">♡</span><strong>Foto 1</strong><small>Guarda tu foto como<br>fotos/foto1.jpg</small></div>
+            <img src="fotos/foto1.jpg" alt="Un recuerdo juntos, foto 1" hidden>
+          </div>
+          <div class="caption">Gran Filosofo</div>
+        </article>
+        <article class="polaroid">
+          <div class="photo-frame">
+            <div class="placeholder"><span class="placeholder-icon">✧</span><strong>Foto 2</strong><small>Guarda tu foto como<br>fotos/foto2.jpg</small></div>
+            <img src="fotos/foto2.jpg" alt="Un recuerdo juntos, foto 2" hidden>
+          </div>
+          <div class="caption">Día genial de verano junto a mi persona favorita (En la otra foto también)</Data></div>
+        </article>
+          </div>
+          <div class="caption">Y los que vendrán</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <span class="mini">Unas palabras para ti</span>
+        <h2>Una pequeña carta</h2>
+      </div>
+      <div class="letter-wrap">
+        <div class="letter-top" aria-hidden="true">♡</div>
+        <div class="letter" id="textoCarta">
+Feliz cumpleaños, Guapisima ♡
+
+Hoy es un día especial porque es el día de una persona que merece tener muchísimos motivos para sonreír.
+
+Quería prepararte algo diferente, un pequeño detalle que no fuera simplemente felicitarte, sino que también pudieras guardar y recordar con una sonrisa.
+
+Espero que disfrutes y lo pases genial y que por supuesto te guste esto igual que a mí prepararlo 
+
+He preparado esta pequeña sorpresa con mucho cariño, cuidando los detalles para que tengas algo especial que puedas guardar.
+
+Ojalá te guste tanto como a mí me ha gustado preparártela.
+
+Disfruta muchísimo de tu día, mi niña
+
+¡Te quiero! ♡</div>
+        <div class="signature">Con mucho cariño Gabi</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="surprise-card">
+        <div class="heart" aria-hidden="true">♡</div>
+        <h2>Y todavía hay una cosita más…</h2>
+        <p>Porque una sorpresa de cumpleaños siempre puede guardar un último detalle.</p>
+        <button class="button" id="revelarBtn" type="button">Abrir última sorpresa ✨</button>
+        <div id="finalMessage" aria-live="polite">
+          <div class="heart" aria-hidden="true">✦ ♡ ✦</div>
+          <h2>Gracias por todas las risas y sonrisas bonita eres increible</h2>
+          <p>Gracias por ser una niña increible que te quiero un montón</p>
+          <p><strong>¡Feliz cumpleaños! 🧡</strong></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>Hecho con cariño, solo para ti ♡</footer>
+
+  <script>
+    // CAMBIA "NOMBRE" por el nombre de tu amiga.
+    const nombre = "Nat!🧡";
+    document.getElementById("nombrePortada").textContent = nombre;
+
+    // Muestra cada foto cuando el archivo exista y se pueda cargar.
+    document.querySelectorAll(".photo-frame img").forEach((foto) => {
+      foto.addEventListener("load", () => {
+        foto.hidden = false;
+        foto.parentElement.querySelector(".placeholder").hidden = true;
+      });
+      foto.addEventListener("error", () => {
+        foto.hidden = true;
+      });
+      if (foto.complete && foto.naturalWidth > 0) {
+        foto.hidden = false;
+        foto.parentElement.querySelector(".placeholder").hidden = true;
+      }
+    });
+
+    document.getElementById("abrirBtn").addEventListener("click", () => {
+      document.getElementById("contenido").classList.add("visible");
+      document.getElementById("contenido").scrollIntoView({ behavior: "smooth" });
+      lanzarConfeti(35);
+    });
+
+    document.getElementById("revelarBtn").addEventListener("click", () => {
+      const mensaje = document.getElementById("finalMessage");
+      mensaje.classList.add("visible");
+      document.getElementById("revelarBtn").textContent = "Sorpresa descubierta ♡";
+      document.getElementById("revelarBtn").disabled = true;
+      lanzarConfeti(90);
+      mensaje.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+
+    function lanzarConfeti(cantidad) {
+      const colores = ["#b7a1e8", "#f2a9c8", "#f5d58e", "#a8d9c6", "#ffffff"];
+      for (let i = 0; i < cantidad; i++) {
+        const pieza = document.createElement("span");
+        pieza.className = "confetti-piece";
+        pieza.style.left = Math.random() * 100 + "vw";
+        pieza.style.background = colores[Math.floor(Math.random() * colores.length)];
+        pieza.style.borderRadius = Math.random() > 0.5 ? "50%" : "2px";
+        pieza.style.animationDuration = (2.5 + Math.random() * 2.5) + "s";
+        pieza.style.animationDelay = (Math.random() * 0.7) + "s";
+        document.body.appendChild(pieza);
+        pieza.addEventListener("animationend", () => pieza.remove());
+      }
+    }
+  </script>
+</body>
+</html>
